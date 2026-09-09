@@ -54,9 +54,8 @@
   <section>
     <h2>Approach</h2>
     <p>
-      Data is scraped directly from Transfermarkt (squad values, minutes, coach
-      tenures) and SofaScore (advanced match stats and xG, via headless Chrome
-      to get past TLS fingerprinting), then cached locally in R. For each team-season,
+      Squad values, minutes, coach tenures, and advanced match stats are
+      scraped and cached locally in R. For each team-season,
       minutes-weighted squad value is computed and compared against raw squad
       value as a predictor of final points. The better model's residuals are
       then attributed to individual coach stints using a mixed-effects model
@@ -130,7 +129,7 @@ python -m http.server 8000
     <ul class="skills">
       <li>R</li>
       <li>lme4 (mixed-effects models)</li>
-      <li>Custom scrapers (Transfermarkt, SofaScore / headless Chrome)</li>
+      <li>Custom web scrapers (headless Chrome)</li>
       <li>Vanilla JavaScript / HTML / CSS</li>
     </ul>
   </section>
