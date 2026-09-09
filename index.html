@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Andrew Salisbury — Data Scientist</title>
+<meta name="description" content="Portfolio of data science projects by Andrew Salisbury.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="index.html">Andrew Salisbury</a>
+    <nav>
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="assets/resume/Andrew_Salisbury_Resume.pdf">Resume</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="hero">
+    <img class="headshot" src="assets/img/andrew-salisbury.jpg" alt="Andrew Salisbury">
+    <div>
+      <h1>Andrew Salisbury</h1>
+      <p class="tagline">Data Scientist</p>
+      <div class="links">
+        <a class="btn primary" href="assets/resume/Andrew_Salisbury_Resume.pdf">Download Resume</a>
+        <a class="btn" href="mailto:andrew@salisburyclan.com">Email</a>
+        <a class="btn" href="https://www.linkedin.com/in/andrew-salisbury-7k">LinkedIn</a>
+        <a class="btn" href="https://github.com/AndrewMSalisbury">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="about">
+    <h2>About</h2>
+    <!-- Replace this paragraph with your bio. -->
+    <p class="bio-placeholder">Bio coming soon.</p>
+  </section>
+
+  <section class="block" id="skills">
+    <h2>Skills</h2>
+    <ul class="skills">
+      <li>R</li>
+      <li>Statistical Modeling</li>
+      <li>Mixed-Effects Models</li>
+      <li>Web Scraping</li>
+      <li>Data Visualization</li>
+      <li>JavaScript / HTML / CSS</li>
+    </ul>
+  </section>
+
+  <section class="block" id="projects">
+    <h2>Projects</h2>
+
+    <div class="project-card">
+      <img class="thumb" src="assets/img/coach-valuation-residuals.png" alt="Model residual plot from the coach valuation project">
+      <div>
+        <h3>Coach Valuation: Isolating a Manager's Effect on Results</h3>
+        <p>
+          A statistics project that separates a football team's performance into
+          squad quality and coaching quality. Built a minutes-weighted squad-value
+          metric, fit mixed-effects models across 14 leagues and 20 seasons
+          (2005–2025) to attribute the performance residual to individual coaches,
+          and validated the resulting grades against three independent
+          out-of-sample tests. Shipped as a full interactive site with coach,
+          team, and league pages plus a team-builder recommender tool.
+        </p>
+        <div class="tags">
+          <span>R</span>
+          <span>lme4</span>
+          <span>Web Scraping</span>
+          <span>Mixed-Effects Models</span>
+          <span>Data Visualization</span>
+          <span>JavaScript</span>
+        </div>
+        <div class="actions">
+          <a href="projects/coach-valuation.html">Case Study →</a>
+          <a href="https://github.com/AndrewMSalisbury/SummerSoccerProjectMegaRepo">Code on GitHub</a>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="block" id="contact">
+    <h2>Contact</h2>
+    <p>
+      Email: <a href="mailto:andrew@salisburyclan.com">andrew@salisburyclan.com</a><br>
+      LinkedIn: <a href="https://www.linkedin.com/in/andrew-salisbury-7k">linkedin.com/in/andrew-salisbury-7k</a><br>
+      GitHub: <a href="https://github.com/AndrewMSalisbury">github.com/AndrewMSalisbury</a>
+    </p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    &copy; <span id="year"></span> Andrew Salisbury
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

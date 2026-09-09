@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coach Valuation — Andrew Salisbury</title>
+<meta name="description" content="Case study: isolating a football coach's effect on team performance using mixed-effects models.">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="../index.html">Andrew Salisbury</a>
+    <nav>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#contact">Contact</a>
+      <a href="../assets/resume/Andrew_Salisbury_Resume.pdf">Resume</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container case-study">
+
+  <a class="back-link" href="../index.html#projects">&larr; Back to projects</a>
+
+  <h1>Coach Valuation: Isolating a Manager's Effect on Results</h1>
+  <p class="lede">
+    How much of a football team's performance is the coach, versus the squad
+    he's given? This project builds a statistical pipeline to answer that
+    question and validates the resulting coach ratings three independent ways.
+  </p>
+
+  <div class="stat-row">
+    <div class="stat"><div class="value">14</div><div class="label">leagues covered</div></div>
+    <div class="stat"><div class="value">2005–2025</div><div class="label">seasons analyzed</div></div>
+    <div class="stat"><div class="value">3</div><div class="label">independent out-of-sample validations</div></div>
+  </div>
+
+  <section>
+    <h2>The problem</h2>
+    <p>
+      Squad spending explains most of a football team's league performance,
+      which makes it hard to tell whether a manager is actually good or simply
+      well-resourced. Raw squad value is a weak proxy for what a coach actually
+      deployed, since it ignores who played the minutes. This project's core
+      hypothesis: a <strong>minutes-weighted</strong> squad-value metric predicts
+      final points more accurately than raw squad value, and the leftover
+      residual — performance above or below what the squad alone would predict
+      — is a defensible signal of coaching quality.
+    </p>
+  </section>
+
+  <section>
+    <h2>Approach</h2>
+    <p>
+      Data is scraped directly from Transfermarkt (squad values, minutes, coach
+      tenures) and SofaScore (advanced match stats and xG, via headless Chrome
+      to get past TLS fingerprinting), then cached locally in R. For each team-season,
+      minutes-weighted squad value is computed and compared against raw squad
+      value as a predictor of final points. The better model's residuals are
+      then attributed to individual coach stints using a mixed-effects model
+      (coach as a random effect, games-weighted so short caretaker spells don't
+      dominate), producing a BLUP-based rating per coach and a letter grade
+      (A–F) for anyone who clears a games-played certification bar.
+    </p>
+    <p>
+      On top of the core rating, the project layers on descriptive analysis:
+      an offense/defense strengths split, a team-style fingerprint (possession,
+      pressing, directness, etc.), and a recommender that scores how well a
+      given coach fits a given squad for a team-builder tool.
+    </p>
+  </section>
+
+  <section>
+    <h2>Validation</h2>
+    <p>
+      A rating is only useful if it predicts something out-of-sample. Three
+      independent tests, on three different designs, all point the same way:
+    </p>
+    <div class="stat-row">
+      <div class="stat"><div class="value">p = 0.0027</div><div class="label">Recommender payoff: leave-one-season-out CV that a suggested coach hire beats the alternative</div></div>
+      <div class="stat"><div class="value">p = 0.004</div><div class="label">Event study: a club's incoming coach grade predicts his performance-above-squad-value at the new club</div></div>
+      <div class="stat"><div class="value">p = 0.0024</div><div class="label">Forward test: prior-season coach ratings, frozen ahead of time, predict 2025/26 performance the model never saw</div></div>
+    </div>
+    <p>
+      Not every angle explored held up — an analysis of whether coaches
+      accelerate player market-value growth came back null after checking
+      repeatability out-of-sample, and a betting-market benchmark confirmed
+      that bookmakers already price in most of what the model captures. Both
+      are reported as negative results in the project's full methodology
+      writeup rather than left out.
+    </p>
+  </section>
+
+  <figure>
+    <img src="../assets/img/coach-valuation-residuals.png" alt="Premier League residuals: actual points vs. model-predicted points">
+    <figcaption>Model residuals for the Premier League — the gap between actual and predicted points is what gets attributed to coaching.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="../assets/img/coach-valuation-lag1.png" alt="Lag-1 season-to-season correlation of coach residuals">
+    <figcaption>Season-to-season correlation of a coach's residual performance — evidence the signal is a persistent trait, not noise.</figcaption>
+  </figure>
+
+  <section>
+    <h2>The site</h2>
+    <p>
+      Results are published as a static, vanilla JS/HTML/CSS site: searchable
+      coach and team pages with grade history, a league table view, a
+      team-builder tool that recommends coach-squad fits, and a long-form
+      methodology writeup covering every validated result (and every null).
+    </p>
+  </section>
+
+  <section>
+    <h2>Run it locally</h2>
+    <p>
+      The dashboard is a static site that fetches JSON via ES modules, so it
+      needs to be served rather than opened directly from disk:
+    </p>
+    <pre>git clone https://github.com/AndrewMSalisbury/SummerSoccerProjectMegaRepo.git
+cd SummerSoccerProjectMegaRepo/site
+python -m http.server 8000
+# then open http://localhost:8000/</pre>
+  </section>
+
+  <section>
+    <h2>Tech stack</h2>
+    <ul class="skills">
+      <li>R</li>
+      <li>lme4 (mixed-effects models)</li>
+      <li>Custom scrapers (Transfermarkt, SofaScore / headless Chrome)</li>
+      <li>Vanilla JavaScript / HTML / CSS</li>
+    </ul>
+  </section>
+
+  <p>
+    <a href="https://github.com/AndrewMSalisbury/SummerSoccerProjectMegaRepo">View the full source code on GitHub →</a>
+  </p>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    &copy; <span id="year"></span> Andrew Salisbury
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
