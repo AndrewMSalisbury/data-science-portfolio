@@ -18,7 +18,7 @@ Just open `index.html` in a browser — no server required.
 
 ## Updating content
 
-- Bio: edit the placeholder paragraph in the `#about` section of `index.html`.
+- Bio: edit the paragraph in the `#about` section of `index.html`.
 - Skills: edit the `<ul class="skills">` list in `index.html`.
 - Adding a project: add a `.project-card` block to `index.html` and a new
   page under `projects/`, following the pattern of `projects/coach-valuation.html`.

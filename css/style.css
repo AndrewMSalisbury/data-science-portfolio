@@ -160,11 +160,6 @@ section.block h2 {
   margin: 0 0 18px;
 }
 
-.bio-placeholder {
-  color: var(--muted);
-  font-style: italic;
-}
-
 .skills {
   display: flex;
   flex-wrap: wrap;
